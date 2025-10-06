@@ -1,31 +1,11 @@
 <script setup>
 import { ref } from 'vue'
+import KnappRad from './components/knapprad.vue'
 
+const knappar = ref(['STEN', 'SAX', 'PÅSE'])
 const score = ref({ spelare: 0, dator: 0 })
 const resultat = ref('Du vann!')
 
-function spelarval(e) {
-  let buttons = document.getElementsByClassName('alternativ')
-  for (let b of buttons) {
-    b.classList.remove('spelarval')
-  }
-  e.target.classList.add('spelarval')
-  datorval()
-  hittaVinnare()
-}
-function datorval() {
-  let val = Math.floor(Math.random() * 3)
-  let alternativ = ['Sten', 'Sax', 'Påse']
-  let buttons = document.getElementsByClassName('alternativ')
-  for (let b of buttons) {
-    b.classList.remove('datorval')
-    b.title = ''
-    if (b.innerText === alternativ[val]) {
-      b.classList.add('datorval')
-      b.title = 'Datorns val'
-    }
-  }
-}
 function hittaVinnare() {
   let buttons = document.getElementsByClassName('alternativ')
   for (let b of buttons) {
@@ -67,11 +47,7 @@ function reset() {
   </header>
 
   <main>
-    <div class="knapprad">
-      <button class="alternativ" @click="spelarval">Sten</button>
-      <button class="alternativ" @click="spelarval">Sax</button>
-      <button class="alternativ" @click="spelarval">Påse</button>
-    </div>
+    <KnappRad :knappar="knappar" />
     <div class="resultat">
       <p id="resultat">{{ resultat }}</p>
     </div>
@@ -89,19 +65,7 @@ header {
   text-align: center;
   margin-bottom: 1.2em;
 }
-button {
-  padding: 0.6em 1.2em;
-  font-size: 1.2em;
-  background-color: cadetblue;
-  border: 1px solid darkcyan;
-  border-radius: 5px;
-  cursor: pointer;
-}
-.knapprad {
-  display: flex;
-  justify-content: center;
-  gap: 0.6em;
-}
+
 .resultat {
   font-size: 1.2em;
   text-align: center;
@@ -111,12 +75,7 @@ button {
   font-size: 1.2em;
   text-align: center;
 }
-button.spelarval {
-  background-color: #aaff00;
-}
-button.datorval {
-  border: red solid 3px;
-}
+
 #nolla {
   margin-top: 2em;
   padding: 0.3em 0.6em;

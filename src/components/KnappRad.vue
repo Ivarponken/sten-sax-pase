@@ -2,13 +2,16 @@
 import { ref } from 'vue'
 
 const props = defineProps(['knappar'])
+const emit = defineEmits(['valdaKnappar'])
+
 function spelarval(e) {
   let buttons = document.getElementsByClassName('alternativ')
   for (let b of buttons) {
     b.classList.remove('spelarval')
   }
   e.target.classList.add('spelarval')
-  datorval()
+
+  emit('valdaKnappar', { spelar: e.target.textContent, dator: datorval() })
 }
 function datorval() {
   let val = Math.floor(Math.random() * props.knappar.length)
@@ -21,6 +24,7 @@ function datorval() {
       b.title = 'Datorns val'
     }
   }
+  return props.knappar[val]
 }
 </script>
 

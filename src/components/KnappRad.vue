@@ -11,7 +11,7 @@ function spelarval(e) {
   }
   e.target.classList.add('spelarval')
 
-  emit('valdaKnappar', { spelar: e.target.textContent, dator: datorval() })
+  emit('valdaKnappar', { spelare: e.target.textContent, dator: datorval() })
 }
 function datorval() {
   let val = Math.floor(Math.random() * props.knappar.length)

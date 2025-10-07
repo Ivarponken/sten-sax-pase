@@ -4,7 +4,7 @@ import KnappRad from './components/knapprad.vue'
 import ResultatRad from './components/ResultatRad.vue'
 import PoangRad from './components/PoangRad.vue'
 
-const knappar = ref(['Sten', 'Sax', 'Påse'])
+const knappar = ref(['Sten', 'Sax', 'Påse', 'Lizard', 'Spock'])
 const score = ref({ spelare: 0, dator: 0 })
 const resultat = ref('Du vann!')
 const vinnare = ref('')
